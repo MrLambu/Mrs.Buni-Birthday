@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Mrs. Bauni 💗</title>
+<style>
+body {
+  margin: 0;
+  padding: 25px 16px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #9b416b;
+  background: linear-gradient(135deg,#ffe5f0,#f2e6ff);
+}
+.card {
+  max-width: 480px;
+  margin: 25px auto;
+  padding: 28px 18px;
+  background: #ffffffd9;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px #c56a9722;
+}
+h1 { font-size: 36px; }
+button {
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 25px;
+  background: #e875a5;
+  color: white;
+  font-size: 16px;
+  margin: 8px;
+}
+#letter { display: none; line-height: 1.8; }
+.heart { font-size: 30px; animation: beat 1s infinite; }
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="heart">💗 🎀 💗</div>
+  <h1>Happy Birthday,<br>Mrs. Bauni! 🎂</h1>
+  <p>A little surprise made with lots of love, just for you! 🥹💕</p>
+  <button onclick="openGift()">Open Your Gift 🎁</button>
+  <h2 id="surprise" style="display:none">You are truly special! 🌷</h2>
+  <p>Sending you a million hugs and happy memories! 💖</p>
+</div>
+
+<div class="card">
+  <h2>Our Little Memories 📸</h2>
+  <p>Every moment with you becomes a special memory. ♡</p>
+  <p>📷 Add your favourite photos together here!</p>
+</div>
+
+<div class="card">
+  <h2>A Secret Letter 💌</h2>
+  <button onclick="showLetter()">Open My Letter</button>
+  <p id="letter">
+    Dear Mrs. Bauni, 💗<br><br>
+    Happy Birthday to someone so special!
+    Thank you for all the laughs, memories
+    and little moments that make life brighter.
+    Even when we fight, you will always have
+    a special place in my heart.<br><br>
+    May your life be full of happiness,
+    love, smiles and beautiful surprises.
+    Keep shining and always be yourself! 🎀<br><br>
+    Lots of love,<br>Your favourite troublemaker ♡
+  </p>
+</div>
+
+<div class="card">
+  <h2>Birthday Music 🎶</h2>
+  <button onclick="playMusic()">Play Birthday Tune ♫</button>
+  <p id="music">Tap to play a little tune 💕</p>
+</div>
+
+<script>
+function openGift() {
+  document.getElementById('surprise').style.display='block';
+  for(let i=0;i<20;i++){
+    let h=document.createElement('div');
+    h.textContent='💗';
+    h.style.cssText='position:fixed;left:'+Math.random()*95+
+    '%;top:'+Math.random()*90+'%;font-size:25px;pointer-events:none';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1800);
+  }
+}
+function showLetter() {
+  let l=document.getElementById('letter');
+  l.style.display=l.style.display==='block'?'none':'block';
+}
+function playMusic() {
+  try {
+    let c=new (window.AudioContext||window.webkitAudioContext)();
+    [523,587,659,784,659,587,523].forEach((f,i)=>{
+      let o=c.createOscillator(),g=c.createGain();
+      o.frequency.value=f;
+      o.connect(g);g.connect(c.destination);
+      g.gain.value=.08;
+      o.start(c.currentTime+i*.25);
+      o.stop(c.currentTime+i*.25+.2);
+    });
+    document.getElementById('music').textContent='A little tune just for you! 🎵';
+  } catch(e) {
+    document.getElementById('music').textContent='Try tapping again for your tune ♡';
+  }
+}
+</script>
+</body>
+</html>
